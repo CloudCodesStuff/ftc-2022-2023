@@ -4,7 +4,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp()
 
@@ -36,7 +35,7 @@ public class mecanumDRIVEEEE extends OpMode {
 
         //Reverses left motor
         //        RIGHT_FRONT.setDirection(DcMotorSimple.Direction.REVERSE);
-       LEFT_REAR.setDirection(DcMotorSimple.Direction.REVERSE);
+       LEFT_REAR.setDirection(DcMotor.Direction.REVERSE);
 
        //Set motors to brake mode so we don't slide around.
         LEFT_FRONT.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
