@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp()
 
-public class helloWorld extends OpMode {
+public class mecanumDRIVEEEE extends OpMode {
     //movement tune
     double movementMultipler = 1;
     double spinMultiplier = 0.7;
