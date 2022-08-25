@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp()
 
-public class mecanumDRIVEEEE extends OpMode {
+public class mecanumEashaan extends OpMode {
     //movement tune
     double movementMultipler = 1;
     double spinMultiplier = 0.7;
