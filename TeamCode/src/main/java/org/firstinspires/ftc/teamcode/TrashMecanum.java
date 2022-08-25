@@ -7,14 +7,14 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp
-class TrashMecanum extends LinearOpMode {
+public class TrashMecanum extends LinearOpMode {
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode(){
 
-        DcMotor motorFrontLeft = hardwareMap.dcMotor.get("motorFrontLeft");
-        DcMotor motorBackLeft = hardwareMap.dcMotor.get("motorBackLeft");
-        DcMotor motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight");
-        DcMotor motorBackRight = hardwareMap.dcMotor.get("motorBackRight");
+        DcMotor motorFrontLeft =  hardwareMap.dcMotor.get("LEFT_FRONT");
+        DcMotor motorBackLeft = hardwareMap.dcMotor.get("RIGHT_FRONT");
+        DcMotor motorFrontRight = hardwareMap.dcMotor.get("RIGHT_REAR");
+        DcMotor motorBackRight =  hardwareMap.dcMotor.get("LEFT_REAR");
 
         // Reverse the right side motors
         // Reverse left motors if you are using NeveRests
