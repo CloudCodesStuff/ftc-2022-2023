@@ -5,11 +5,19 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.openftc.easyopencv.OpenCvWebcam;
+
 @TeleOp()
 
-public class mecanumEashaan extends OpMode {
+public class mecanumEashaan extends OpMode  {
+
+
     //movement tune
-    double movementMultipler = 1;
+    double movementMultiplier = 1;
     double spinMultiplier = 0.7;
     //end of movement tune
     String initMsg = "Robot initialized";
@@ -18,12 +26,28 @@ public class mecanumEashaan extends OpMode {
     private DcMotor RIGHT_REAR;
     private DcMotor LEFT_REAR;
     private DcMotor SPINNER;
+    OpenCvWebcam webcam;
+
 
     @Override
     public void init() {
+
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+
         //printed an init message to the driver hub
         telemetry.addData("", initMsg);
+        webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
+        {
+            @Override
+            public void onOpened()
+            {
+                webcam.startStreaming(320,240, OpenCvCameraRotation.UPRIGHT);
+            }
 
+            @Override
+            public void onError(int errorCode) {}
+        });
 
         //Mapped all motors
         LEFT_FRONT = hardwareMap.dcMotor.get("LEFT_FRONT");
@@ -49,9 +73,9 @@ public class mecanumEashaan extends OpMode {
 
     @Override
     public void loop() {
-        double horizontal = movementMultipler * gamepad1.left_stick_x;
-        double vertical = -movementMultipler * gamepad1.left_stick_y;
-        double turn = -movementMultipler * gamepad1.right_stick_x;
+        double horizontal = movementMultiplier * gamepad1.left_stick_x;
+        double vertical = -movementMultiplier * gamepad1.left_stick_y;
+        double turn = -movementMultiplier * gamepad1.right_stick_x;
         double spinnerL = spinMultiplier * gamepad1.left_trigger;
         double spinnerR = spinMultiplier * gamepad1.right_trigger;
 
